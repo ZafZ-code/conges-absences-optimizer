@@ -1,0 +1,3 @@
+public enum TypeAbsence {
+    CONGE_PAYE, CONGE_SANS_SOLDE, MALADIE, NAISSANCE, DECES
+}
