@@ -8,7 +8,7 @@ public abstract class Utilisateur {
     private String email;
     private String motDePasseHash;
 
-    protected  Utilisateur(int id, String nom, String prenom, String email, String motDePasseHash){
+    public  Utilisateur(int id, String nom, String prenom, String email, String motDePasseHash){
         setId(id);
         setNom(nom);
         setPrenom(prenom);
@@ -16,7 +16,7 @@ public abstract class Utilisateur {
         setMotDePasseHash(motDePasseHash);
     }
 
-    protected  Utilisateur(String nom, String prenom, String email, String motDePasseHash){
+    public  Utilisateur(String nom, String prenom, String email, String motDePasseHash){
         this(0, nom, prenom, email, motDePasseHash);
     }
     // The Getters and Setters 
