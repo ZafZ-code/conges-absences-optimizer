@@ -22,7 +22,7 @@ public class Notification {
 		this.destinataire=destinataire;
 	}
 	
-	public void envoyerEmail() {
+	public void envoyerEmail() throws EnvoiEmailException() {
 		String adresseServeur =System.getenv("AdresseServeur");
 		String adresseApplication =System.getenv("AdresseApp");
 		String motDePasse=System.getenv("MotDePasse");
