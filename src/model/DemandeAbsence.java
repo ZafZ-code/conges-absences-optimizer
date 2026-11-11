@@ -97,6 +97,11 @@ public class DemandeAbsence {
         return compteur;
 
     }
+    public double calculerScore (boolean rotation)
+        {
+            this.scorePriorite=5*(rotation ? 1:0)+Math.min (Employe.getAnciennete(), 10);
+            return scorePriorite ;
+        }
 
   
 
