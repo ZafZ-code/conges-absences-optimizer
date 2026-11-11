@@ -2,7 +2,7 @@ import java.time.LocalDate;
 
 public class verifierDemande {
     public boolean verifierSolde(DemandeAbsence d) {
-        int solde = d.getEmplyer().soldeConge;
+        int solde = d.getEmployer().soldeConge;
         if (solde - d.nbJours >= 0)
             return true;
         return false;
