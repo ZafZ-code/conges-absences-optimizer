@@ -1,4 +1,7 @@
+package model;
+
 import java.util.Map;
+import java.util.TreeMap;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -6,15 +9,14 @@ import java.util.HashMap;
 import java.util.List;
 
 public class optimisateurDemandes {
-    // calculerPriorite, 3la ana ases puisque score bech yit7sib fil demande
-    // abscense
     public Map<DemandeAbscence, Equipe> trierDemandes(Map<DemandeAbscence, Equipe> ld) {
         // Trier les demandes concurrentes par priorité décroissante
-        ld.sort(Comparator.comparingDouble(DemandeAbscense::getScorePriorite).reversed());
-        return ld;
+        TreeMap<DemandeAbscence, Equipe> sortedMap = new TreeMap<>(new ComparerPriorite());
+        sortedMap.putAll(ld);
+        return sortedMap;
     }
 
-    public Planification genererPlanification(List<Demande> demandesEquipe) {
+    public Planification genererPlanification(List<DemandeAbscence> demandesEquipe) {
         // Ici comment faire pour les attributs d'une planification
         Planification planning = new Planification();
 
@@ -39,7 +41,7 @@ public class optimisateurDemandes {
         for (Equipe equipe : demandesEquipe.values()) {
             effectifsDisponibles.putIfAbsent(
                     equipe,
-                    equipe.getEffectifPresent());
+                    equipe.getEffectifPresent()); // à discuter si calculerEffectifPresent(ama date hna)
         }
 
         // Trier les demandes par priorité
@@ -174,17 +176,16 @@ public class optimisateurDemandes {
             }
         }
         return meilleure;
-        }
-        // Son principe est de conserver une liste tabou (Tabu List) qui mémorise
-        // temporairement les mouvements déjà effectués pour éviter de revenir
-        // constamment aux mêmes solutions.
-        // Fonctionnement
-        // 1. Commencer avec une planification initiale.
-        // 2. Générer plusieurs solutions voisines.
-        // 3. Choisir le meilleur mouvement possible.
-        // 4. Ajouter le mouvement effectué dans la liste tabou.
-        // 5. Interdire temporairement les mouvements inverses ou répétitifs.
-        // 6. Continuer jusqu'à atteindre un nombre maximal d'itérations ou une limite
-        // de stagnation.
     }
+    // Son principe est de conserver une liste tabou (Tabu List) qui mémorise
+    // temporairement les mouvements déjà effectués pour éviter de revenir
+    // constamment aux mêmes solutions.
+    // Fonctionnement
+    // 1. Commencer avec une planification initiale.
+    // 2. Générer plusieurs solutions voisines.
+    // 3. Choisir le meilleur mouvement possible.
+    // 4. Ajouter le mouvement effectué dans la liste tabou.
+    // 5. Interdire temporairement les mouvements inverses ou répétitifs.
+    // 6. Continuer jusqu'à atteindre un nombre maximal d'itérations ou une limite
+    // de stagnation.
 }
